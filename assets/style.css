@@ -1,0 +1,11 @@
+img {
+    margin: 0 auto;
+    width: 100%
+}
+
+.gif-holder {
+    height: 200px;
+    background-color: grey;
+    padding: 10px;
+    border: 2px solid white;
+}
