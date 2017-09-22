@@ -1,11 +1,29 @@
-img {
-    margin: 0 auto;
+.jumbotron {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 0;
+    margin: 15px 0px;
+    background-color: #461D13;
+    color: white;
+}
+
+.topic {
+    background-color: #7A6646;
+    margin-left: 15px;
+
+}
+.card-columns {
+    margin-top: 15px;
+
+    column-count: 3;
     width: 100%
 }
 
-.gif-holder {
-    height: 200px;
-    background-color: grey;
-    padding: 10px;
-    border: 2px solid white;
+.card {
+    padding: 5px;
+    display: inline-block;
+    width: 100%;
+}
+.card img {
+    width: 100%
 }

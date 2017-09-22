@@ -20,7 +20,7 @@ $(document).ready(function() {
         //create query url
         var topic = $(this).attr('data-query');
         var queryURL = "http://api.giphy.com/v1/gifs/search?q=firefly+" +
-            topic + "&api_key=8290122d62df4b59927f29b3184cca8f&limit=10";
+            topic + "&api_key=8290122d62df4b59927f29b3184cca8f";
         // get results from giphy
         $.ajax({
             url: queryURL,
@@ -28,30 +28,35 @@ $(document).ready(function() {
         // when results received
         }).done(function(response){
             var results = response.data;
-            console.log(results);
             // empty results Div
             $("#results").empty();
-            // write each response to page
-            for (var i = 0; i < results.length; i++) {
-                //create figure for image
-                var newColumn = $("<div>", {class: "col-xs-4 gif-holder"});
-                var newFigure = $("<figure>", {class: 'figure'});
-                //create image
-                var newImage = $("<img>", {class: "figure-img img-fluid gif"});
-
-                newImage.attr('src', results[i].images.fixed_width_still.url);
-                newImage.attr('data-still', results[i].images.fixed_width_still.url);
-                newImage.attr('data-animate', results[i].images.fixed_width_small.url);
-                newImage.attr('data-state', 'still');
-                newImage.attr('alt', topic);
-                // create caption
-                var newCaption = $("<figcaption>", {class: "figure-caption"});
-                newCaption.text("Rating: " + results[i].rating );
-                // append image
-                newColumn.append(newFigure);
-                newFigure.append(newImage);
-                newFigure.append(newCaption);
-                $("#results").append(newColumn)
+            // write 10 responses to page (I chose to do this rather than limit the results so that there would be a little bit                 of variety)
+            var used = [];
+            for (var i = 0; i < 10;) {
+                var random = Math.floor(Math.random() * 25);
+                if (used.indexOf(random) < 0) {
+                    used.push(random);
+                    i++;
+                    console.log(random);
+                    //create card for image
+                    var newCard = $("<div>", {class: "card"});
+                    //create image
+                    var newImage = $("<img>", {class: "card-img-top img-fluid gif"});
+                    newImage.attr('src', results[random].images.fixed_width_still.url);
+                    newImage.attr('data-still', results[random].images.fixed_width_still.url);
+                    newImage.attr('data-animate', results[random].images.fixed_width.url);
+                    newImage.attr('data-state', 'still');
+                    newImage.attr('alt', topic);
+                    // create caption
+                    var newBlock = $("<div>", {class: 'card-block'});
+                    var newCaption = $("<p>", {class: "card-text"});
+                    newCaption.text("Rating: " + results[random].rating);
+                    // append image
+                    newCard.append(newImage);
+                    newBlock.append(newCaption);
+                    newCard.append(newBlock);
+                    $("#results").append(newCard)
+                }
             }
         });
     });

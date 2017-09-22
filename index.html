@@ -16,13 +16,14 @@
 <body>
 
 <div class="container">
-    <div class="row">
-        <div class="row">
-            <div class="row" id="buttons"></div>
-            <div class="row" id="input">
-                <h4>Don't see your favorite character? Add them to the list!</h4>
+    <div class="jumbotron">
+        <div class="col-xs-12 col-sm-7">
+            <h2>Firefly Gif Machine</h2>
+        </div>
+        <div class="row" id="input">
+            <div class="col-xs-12 col-sm-5">
+                <h6>Don't see your favorite character? Add them to the list!</h6>
                 <div class="input-group">
-                    <span class="input-group-addon">My favorite character is: </span>
                     <input type="text" class="form-control" placeholder="Character" id="form-input">
                     <span class="input-group-btn">
                         <button class="btn btn-secondary" type="button" id="new-topic">Go!</button>
@@ -30,9 +31,16 @@
                 </div>
             </div>
         </div>
-        <div class="row" id="results"></div>
     </div>
+
+
+    <div class="row" id="buttons"></div>
+    <div class="card-columns" id="results"></div>
+
+
 </div>
+
+
 
 <script></script>
 </body>
