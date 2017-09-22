@@ -19,7 +19,7 @@ $(document).ready(function() {
     $(document).on("click", ".topic", function() {
         //create query url
         var topic = $(this).attr('data-query');
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=firefly+" +
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=firefly+" +
             topic + "&api_key=8290122d62df4b59927f29b3184cca8f";
         // get results from giphy
         $.ajax({
