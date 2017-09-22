@@ -14,7 +14,6 @@
 }
 .card-columns {
     margin-top: 15px;
-
     column-count: 3;
     width: 100%
 }
