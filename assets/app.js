@@ -71,12 +71,20 @@ function getGifs(data) {
                 newImage.attr('data-animate', results[random].images.original.url);
                 newImage.attr('data-state', 'still');
                 newImage.attr('alt', topic);
+                newImage.attr("id", "image-" + topic + i);
+                //create ovelay
+                var newOverlay = $("<div>", {class: "overlay"});
+                newOverlay.attr("id", topic + i);
+                var newIcon = $("<span>", {class: "glyphicon glyphicon-play"});
+                newIcon.attr("id", "icon-" + topic + i);
+                newOverlay.append(newIcon);
                 // create caption
                 var newBlock = $("<div>", {class: 'card-block'});
                 var newCaption = $("<p>", {class: "card-text"});
                 newCaption.text("Rating: " + results[random].rating);
                 // append image
                 newCard.append(newImage);
+                newCard.append(newOverlay);
                 newBlock.append(newCaption);
                 newCard.append(newBlock);
                 $("#results").append(newCard)
@@ -94,17 +102,23 @@ $(document).ready(function() {
         getGifs($(this).attr('data-query'));
     });
     //play and pause gifs
-    $(document).on("click", ".gif", function() {
-        var state = $(this).attr("data-state");
+    $(document).on("click", ".overlay", function() {
+        console.log($(this).attr("id"));
+        var image = $("#image-" + $(this).attr("id"));
+        var icon = $("#icon-" + $(this).attr("id"));
+        var state = $(image).attr("data-state");
+        console.log(image)
         // plsy
         if (state === "still"){
-            $(this).attr("src", $(this).attr("data-animate"));
-            $(this).attr("data-state", "animate");
+            $(image).attr("src", $(image).attr("data-animate"));
+            $(image).attr("data-state", "animate");
+            $(icon).attr("class", "glyphicon glyphicon-stop")
         }
         // pause
         else if (state === "animate"){
-            $(this).attr("src", $(this).attr("data-still"));
-            $(this).attr("data-state", "still");
+            $(image).attr("src", $(image).attr("data-still"));
+            $(image).attr("data-state", "still");
+            $(icon).attr("class", "glyphicon glyphicon-play")
         }
     });
     //add topic to list from search bar
