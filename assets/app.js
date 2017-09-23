@@ -40,6 +40,7 @@ String.prototype.toTitleCase = function(){
         return match.charAt(0).toUpperCase() + match.substr(1);
     });
 };
+//query giphy API for results and display still images
 function getGifs(data) {
     var topic = data;
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=firefly+" +
@@ -51,6 +52,7 @@ function getGifs(data) {
         // when results received
     }).done(function(response){
         var results = response.data;
+        console.log(results);
         // empty results Div
         $("#results").empty();
         // write 10 responses to page (I chose to do this rather than limit the results so that there would be a little bit                 of variety)
@@ -64,9 +66,9 @@ function getGifs(data) {
                 var newCard = $("<div>", {class: "card"});
                 //create image
                 var newImage = $("<img>", {class: "card-img-top img-fluid gif"});
-                newImage.attr('src', results[random].images.fixed_width_still.url);
-                newImage.attr('data-still', results[random].images.fixed_width_still.url);
-                newImage.attr('data-animate', results[random].images.fixed_width.url);
+                newImage.attr('src', results[random].images.original_still.url);
+                newImage.attr('data-still', results[random].images.original_still.url);
+                newImage.attr('data-animate', results[random].images.original.url);
                 newImage.attr('data-state', 'still');
                 newImage.attr('alt', topic);
                 // create caption
@@ -86,7 +88,7 @@ $(document).ready(function() {
 
     createButtons();
     getGifs("ship");
-    // when button is pushed, query giphy API for results and display still images
+    // when button is pushed,
     $(document).on("click", ".topic", function() {
         //create query url
         getGifs($(this).attr('data-query'));
