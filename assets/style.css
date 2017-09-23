@@ -55,7 +55,6 @@
     -ms-transform: translate(-50%, -50%);
 }
 #giphy {
-    position: absolute;
-    right: 50px;
+    float: right;
     height: 20px;
 }
